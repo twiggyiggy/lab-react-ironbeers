@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navbar'
+import {Link} from 'react-router-dom'
 
 class Beers extends Component {
   
@@ -9,37 +10,35 @@ class Beers extends Component {
   }
   
   componentDidMount() {
-    axios.get('https://ih-beer-api.herokuapp.com/beers')
-    
-    .then((response) => {
-      const beersFromAPI = response.data.splice(0,50)
-      // console.log(beersFromAPI)
+    axios.get('https://ih-beer-api.herokuapp.com/beers/')
+    .then( (response) => {
+      // console.log(response.data)
+      let beersFromAPI = response.data.splice(0,20)
       this.setState({
-        beers: beersFromAPI,
+        beers: beersFromAPI
       })
     })
-    .catch((error) => {
-      console.log(error)
-    })
+    .catch((error) => console.log(error))
+  }
+
+  makeBeersList () { 
   }
   
   render() {
     return (
       <>
-        <Navbar />
-        <h2>All Beers Page</h2>
-        <section className='container'>
-          {this.state.beers.length > 0 ? this.state.beers.map((beer, index) => {
-            return(
-              <article className='beer-card' key={index}>
-                <img src={beer.image_url} alt="craft beer"/>
-                <a href={`/beers/${beer._id}`}><h3>{beer.name}</h3></a>
-                <h3>{beer.tagline}</h3>
-                <p><strong>Created by: </strong>{beer.contributed_by}</p>
-              </article>
-            )
-          }) : <p>Loading...</p>}
-        </section>
+        <Navbar/>
+        <h1>All beers</h1>
+        {this.state.beers.map((beer, index) => 
+            <article key={index}>
+              <Link to={`/beers/${beer._id}`}>
+                <img src={beer.image_url} width = '70px' alt='BEER'/>
+              </Link>
+              <h2>{beer.name}</h2>
+              <h3>{beer.tagline}</h3>
+              <p><strong>Created by: </strong>{beer.contributed_by}</p>
+            </article>
+        )}
       </>
     )
 

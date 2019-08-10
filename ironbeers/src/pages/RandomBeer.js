@@ -1,15 +1,12 @@
-import React from 'react'
-// import axios from 'axios'
-import Navbar from '../components/Navbar';
+import React, { Component } from 'react'
 
-
-function RandomBeer() {
-  return (
-    <div>
-      <Navbar />
-      <h2>Random Beer Page</h2>
-    </div>
-  )
+export default class RandomBeer extends Component {
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
 }
 
-export default RandomBeer

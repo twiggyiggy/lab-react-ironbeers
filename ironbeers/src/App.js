@@ -1,13 +1,13 @@
 import React from 'react';
 // import milligram from 'milligram';
 import {Route, Switch} from 'react-router-dom';
+import SingleBeer from './pages/SingleBeer'
 
 import Home from './pages/Home.js';
 import Beers from './pages/Beers.js'
 import RandomBeer from './pages/RandomBeer.js'
 import NewBeer from './pages/NewBeer.js'
 import NotFound from './pages/NotFound.js'
-import BeerDetails from './pages/BeerDetails.js'
 
 
 import './App.css';
@@ -20,7 +20,7 @@ function App() {
           <Route path='/beers' exact component={Beers}/>
           <Route path='/random-beer' exact component={RandomBeer}/>
           <Route path='/new-beer' exact component={NewBeer}/>
-          <Route path='/beers/:beerId' exact component={BeerDetails}/>
+          <Route path='/beers/:id' exact component={SingleBeer}/>
           <Route component={NotFound} />
       </Switch>
     </div>
